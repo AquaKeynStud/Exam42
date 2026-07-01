@@ -6,7 +6,7 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 09:20:52 by arocca            #+#    #+#             */
-/*   Updated: 2025/10/23 09:50:24 by arocca           ###   ########.fr       */
+/*   Updated: 2025/10/28 08:42:53 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	ft_popen(const char *file, char *const argv[], char type)
 		return (-1);
 
 	if (pipe(fd) < 0)									// On crée un pipe (si err: -1 d'où < 0)
-		return -1;
+		return (-1);
 
 	pid = fork();										// On crée un enfant (pour exec la commande, execvp fait un exit)
-	if (pid == -1)										// Si err
+	if (pid < 0)										// Si err
 		return (close(fd[0]), close(fd[1]), -1);		// On close les fds et on sort avec -1
 
 	/* -- CHILD PROCESS -- */
